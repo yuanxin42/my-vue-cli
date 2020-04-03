@@ -1,3 +1,10 @@
+<!--
+ * @Author       : yuanxin42@xdf.cn
+ * @Date         : 2020-04-03 10:05:55
+ * @LastEditors  : yuanxin42@xdf.cn
+ * @LastEditTime : 2020-04-03 16:39:59
+ * @Description  : 描述信息
+ -->
 <template>
   <div id="title">
     <h1>{{demo()}}</h1>
@@ -11,7 +18,7 @@ export default {
     return {};
   },
   mounted() {
-    var str = "babel111";
+    var str = "babel1112";
     var func = s => {
       document.getElementById("title").innerHTML = `hello ${s}`;
     };
@@ -27,6 +34,9 @@ export default {
 
 
 <style>
+div{
+  color: red;
+}
 h1 {
   width: 100px;
   height: 100px;

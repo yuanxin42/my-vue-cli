@@ -2,12 +2,13 @@
  * @Author       : yuanxin42@xdf.cn
  * @Date         : 2020-04-03 10:05:55
  * @LastEditors  : yuanxin42@xdf.cn
- * @LastEditTime : 2020-04-03 15:27:11
+ * @LastEditTime : 2020-04-03 16:39:20
  * @Description  : 描述信息
  */
 // webpack.config.js
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 var path = require('path')
 module.exports = {
   entry: './src/index.js',
@@ -33,14 +34,14 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader'
       },
-      // 它会应用到普通的 `.css` 文件
-      // 以及 `.vue` 文件中的 `<style>` 块
       {
         test: /\.css$/,
         use: [
-          'vue-style-loader',
-          'css-loader'
-        ]
+             process.env.NODE_ENV !== 'production'
+            ? 'vue-style-loader'
+            : MiniCssExtractPlugin.loader,
+              'css-loader'
+          ]
       }
     ]
   },
@@ -63,6 +64,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(__dirname, 'index.html')
-  }),
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'index.css',
+      allChunks: true
+    })
   ]
 }
