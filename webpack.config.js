@@ -2,11 +2,12 @@
  * @Author       : yuanxin42@xdf.cn
  * @Date         : 2020-04-03 10:05:55
  * @LastEditors  : yuanxin42@xdf.cn
- * @LastEditTime : 2020-04-03 15:20:21
+ * @LastEditTime : 2020-04-03 15:27:11
  * @Description  : 描述信息
  */
 // webpack.config.js
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path')
 module.exports = {
   entry: './src/index.js',
@@ -57,6 +58,11 @@ module.exports = {
   },
   plugins: [
     // 请确保引入这个插件来施展魔法
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    // 添加html的插件
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.join(__dirname, 'index.html')
+  }),
   ]
 }
