@@ -1,3 +1,10 @@
+/*
+ * @Author       : yuanxin42@xdf.cn
+ * @Date         : 2020-04-03 10:05:55
+ * @LastEditors  : yuanxin42@xdf.cn
+ * @LastEditTime : 2020-04-03 15:20:21
+ * @Description  : 描述信息
+ */
 // webpack.config.js
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 var path = require('path')
@@ -35,6 +42,18 @@ module.exports = {
         ]
       }
     ]
+  },
+  devServer: {
+    contentBase: path.join(__dirname, './dist'),
+    port: "8888",
+    open: true,
+    hot: true
+  },
+  // compiler模式
+  resolve: {
+    alias: {
+        vue: 'vue/dist/vue.js',
+    }
   },
   plugins: [
     // 请确保引入这个插件来施展魔法
