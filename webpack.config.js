@@ -2,22 +2,38 @@
  * @Author       : yuanxin42@xdf.cn
  * @Date         : 2020-04-03 10:05:55
  * @LastEditors  : yuanxin42@xdf.cn
- * @LastEditTime : 2020-04-07 10:38:17
+ * @LastEditTime : 2020-04-07 10:59:10
  * @Description  : 描述信息
  */
 // webpack.config.js
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 var path = require('path')
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    app: [
+      path.join(__dirname, 'src/index.js')
+    ],
+    common: ['vue']
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          name: "common",
+          chunks: "initial",
+          minChunks: 2
+        }
+      }
+    }
+  },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].[hash].js',
     chunkFilename: '[name].[hash].js',
-    publicPath:'/'
+    publicPath: '/'
   },
   mode: 'development',
   module: {
